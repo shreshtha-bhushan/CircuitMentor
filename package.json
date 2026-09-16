@@ -1,0 +1,21 @@
+{
+  "name": "circuitmentor",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI-mentored circuit simulation learning platform",
+  "scripts": {
+    "dev": "pnpm --filter @circuitmentor/web dev",
+    "build": "pnpm --filter @circuitmentor/web build",
+    "typecheck": "pnpm --filter @circuitmentor/web tsc --noEmit",
+    "lint": "pnpm --filter @circuitmentor/web lint",
+    "api:dev": "cd apps/api && uvicorn app.main:app --reload --port 8000",
+    "api:migrate": "cd apps/api && alembic upgrade head",
+    "api:seed": "cd apps/api && python -m app.seed",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down"
+  },
+  "packageManager": "pnpm@9.12.0",
+  "engines": {
+    "node": ">=20"
+  }
+}

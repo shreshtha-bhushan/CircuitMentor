@@ -1,0 +1,267 @@
+/* =============================================================================
+   CircuitMentor — Design Tokens
+   Theme: Dark workspace with single systemBlue accent.
+   Strictly monochrome + blue accent. Deference principle: canvas carries weight.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------------------------------------------------------------------
+     Color Tokens (Exact Palette)
+     ------------------------------------------------------------------ */
+  --void:        #000000;   /* canvas background */
+  --base:        #05070A;   /* app background / gaps between panels */
+  --panel:       #0C1017;   /* sidebars, toolbars, inspector */
+  --raised:      #141A24;   /* cards, rows, input fields, tiles */
+  --hover:       #1C2431;   /* hover fill on interactive rows */
+  --pressed:     #243040;   /* active / pressed fill */
+  --line:        rgba(255, 255, 255, .08);   /* hairline separators */
+  --line-strong: rgba(255, 255, 255, .16);   /* selected borders, focus rings */
+
+  --blue:        #0A84FF;   /* single accent (iOS 26 system blue) */
+  --blue-hover:  #0071E3;
+  --blue-pressed:#0060DF;
+  --blue-text:   #64A8FF;   /* blue text for AA contrast against panel */
+  --blue-tint:   rgba(10, 132, 255, .14);    /* active row / selected tile background */
+  --blue-glow:   rgba(10, 132, 255, .28);    /* canvas selection aura */
+
+  --text-1:      #F5F5F7;   /* primary labels, headings (90% contrast) */
+  --text-2:      #86868B;   /* secondary labels, icons, metadata (55%) */
+  --text-3:      #48484A;   /* placeholders, shortcuts, disabled (30%) */
+
+  /* Reserved status hues (strictly circuit state / ERC faults) */
+  --success:     #30D158;   /* simulation run OK, pass */
+  --warning:     #FFD60A;   /* ERC warnings */
+  --error:       #FF453A;   /* ERC violations, floating pins */
+  --error-tint:  rgba(255, 69, 58, .16);
+
+  /* Mentor AI cyan (reserved voice) */
+  --mentor:      #64D2FF;
+  --mentor-tint: rgba(100, 210, 255, .12);
+
+  /* Wire semantics on canvas */
+  --wire-vcc:       #FF453A;
+  --wire-gnd:       #86868B;   /* grey, not black — black is canvas void */
+  --wire-signal:    #0A84FF;
+  --wire-bus:       #64D2FF;
+  --wire-selected:  #FFFFFF;
+  --error-halo:     rgba(255, 69, 58, .35);
+
+  /* Grid: 10% opacity, felt more than seen */
+  --grid-dot:       rgba(255, 255, 255, .10);
+  --grid-dot-major: rgba(255, 255, 255, .16);
+  --grid-pitch:     10px;
+
+  /* ---------------------------------------------------------------------
+     Material Tokens (Liquid Glass)
+     Glass is ONLY for elements floating OVER canvas content.
+     Sidebars are structural chrome: Opaque --panel (#0C1017).
+     ------------------------------------------------------------------ */
+  --glass-fill:       rgba(12, 16, 23, 0.55);
+  --glass-blur:       blur(20px) saturate(160%);
+  --glass-stroke:     1px solid rgba(255, 255, 255, 0.12);
+  --glass-highlight:  inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  --glass-shadow:     0 8px 32px rgba(0, 0, 0, .5), 0 2px 8px rgba(0, 0, 0, .3);
+
+  /* Popovers / Dialogs (heavier material) */
+  --glass-popover:    rgba(12, 16, 23, 0.82);
+  --glass-blur-heavy: blur(30px) saturate(180%);
+  --scrim:            rgba(0, 0, 0, 0.55);
+
+  /* ---------------------------------------------------------------------
+     Geometry & Concentric Radii (R_inner = R_outer - padding)
+     ------------------------------------------------------------------ */
+  --r-panel: 20px;   /* Panel / sheet / dialog */
+  --r-card:  14px;   /* Card / tile / group */
+  --r-btn:   10px;   /* Button / search field / row */
+  --r-badge:  6px;   /* Badge / nested small indicator */
+  --r-pill: 980px;   /* Pill / status badge / segmented container */
+
+  --space-0:  2px;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+
+  --control-h: 32px;
+  --rail-w:    56px;
+  --library-w: 280px;
+  --dock-w:    360px;
+
+  /* ---------------------------------------------------------------------
+     Typography Hierarchy
+     ------------------------------------------------------------------ */
+  --font-primary: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    "Geist Mono", "JetBrains Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+  --text-overline: 500 11px / 1.3 var(--font-primary);
+  --text-meta:     400 12px / 1.33 var(--font-primary);
+  --text-body:     500 13px / 1.38 var(--font-primary);
+  --text-heading:  600 14px / 1.33 var(--font-primary);
+  --text-title:    600 20px / 1.25 var(--font-primary);
+
+  --mono-body:     400 12px / 1.4 var(--font-mono);
+  --mono-micro:    500 11px / 1.3 var(--font-mono);
+
+  --tracking-overline: 0.06em;
+
+  /* ---------------------------------------------------------------------
+     Motion Tokens
+     ------------------------------------------------------------------ */
+  --ease-spring: cubic-bezier(.23, 1, .32, 1);
+  --d-standard:  200ms;
+  --d-press:     120ms;
+
+  /* Focus rings & glows */
+  --focus-ring:       0 0 0 1.5px var(--blue);
+  --selection-glow:   0 0 0 1.5px var(--blue), 0 0 12px var(--blue-glow);
+
+  /* ---------------------------------------------------------------------
+     Backward-compatible aliases for --cm-* tokens
+     ------------------------------------------------------------------ */
+  --cm-void:              var(--void);
+  --cm-base:              var(--base);
+  --cm-panel:             var(--panel);
+  --cm-raised:            var(--raised);
+  --cm-hover:             var(--hover);
+  --cm-pressed:           var(--pressed);
+  --cm-line:              var(--line);
+  --cm-line-strong:       var(--line-strong);
+  --cm-blue:              var(--blue);
+  --cm-blue-hover:        var(--blue-hover);
+  --cm-blue-pressed:      var(--blue-pressed);
+  --cm-blue-text:         var(--blue-text);
+  --cm-blue-tint:         var(--blue-tint);
+  --cm-blue-glow:         var(--blue-glow);
+  --cm-text:              var(--text-1);
+  --cm-text-secondary:    var(--text-2);
+  --cm-text-tertiary:     var(--text-3);
+  --cm-ok:                var(--success);
+  --cm-warn:              var(--warning);
+  --cm-error:             var(--error);
+  --cm-error-tint:        var(--error-tint);
+  --cm-mentor:            var(--mentor);
+  --cm-mentor-tint:       var(--mentor-tint);
+  --cm-wire-vcc:          var(--wire-vcc);
+  --cm-wire-gnd:          var(--wire-gnd);
+  --cm-wire-signal:       var(--wire-signal);
+  --cm-wire-bus:          var(--wire-bus);
+  --cm-wire-selected:     var(--wire-selected);
+  --cm-error-halo:        var(--error-halo);
+  --cm-grid-dot:          var(--grid-dot);
+  --cm-grid-dot-major:    var(--grid-dot-major);
+  --cm-grid-pitch:        var(--grid-pitch);
+  --cm-glass-thin:        var(--glass-blur);
+  --cm-glass-thin-fill:   var(--glass-fill);
+  --cm-glass-regular:     var(--glass-blur);
+  --cm-glass-regular-fill:var(--glass-fill);
+  --cm-glass-thick:       var(--glass-blur-heavy);
+  --cm-glass-thick-fill:  var(--glass-popover);
+  --cm-scrim:             var(--scrim);
+  --cm-r-xs:              var(--r-badge);
+  --cm-r-sm:              var(--r-btn);
+  --cm-r-md:              var(--r-card);
+  --cm-r-lg:              var(--r-panel);
+  --cm-r-pill:            var(--r-pill);
+  --cm-space-0:           var(--space-0);
+  --cm-space-1:           var(--space-1);
+  --cm-space-2:           var(--space-2);
+  --cm-space-3:           var(--space-3);
+  --cm-space-4:           var(--space-4);
+  --cm-space-5:           var(--space-5);
+  --cm-space-6:           var(--space-6);
+  --cm-control-h:         var(--control-h);
+  --cm-rail-w:            var(--rail-w);
+  --cm-library-w:         var(--library-w);
+  --cm-dock-w:            var(--dock-w);
+  --cm-font:              var(--font-primary);
+  --cm-font-mono:         var(--font-mono);
+  --cm-ease-out:          var(--ease-spring);
+  --cm-d-press:           var(--d-press);
+  --cm-hairline-top:      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  --cm-shadow-popover:    var(--glass-shadow);
+  --cm-shadow-modal:      0 24px 64px rgba(0, 0, 0, .65);
+  --cm-glow-selection:    var(--selection-glow);
+  --cm-focus-ring:        var(--focus-ring);
+  --cm-mono-micro:        var(--mono-micro);
+  --cm-mono-body:         var(--mono-body);
+  --cm-text-caption:      var(--text-meta);
+  --cm-text-label:        var(--text-body);
+  --cm-text-heading:      var(--text-heading);
+  --cm-text-title:        var(--text-title);
+  --cm-tracking-micro:    0.02em;
+
+  /* ---------------------------------------------------------------------
+     shadcn/ui & Radix UI CSS Variable Aliases
+     Mapped directly to CircuitMentor tokens (ZERO hex literals)
+     ------------------------------------------------------------------ */
+  --background:          var(--cm-panel);
+  --foreground:          var(--cm-text);
+  --card:                var(--cm-raised);
+  --card-foreground:     var(--cm-text);
+  --popover:             var(--cm-panel);
+  --popover-foreground:  var(--cm-text);
+  --primary:             var(--cm-blue);
+  --primary-foreground:  var(--text-1);
+  --secondary:           var(--cm-raised);
+  --secondary-foreground:var(--cm-text);
+  --muted:               var(--cm-raised);
+  --muted-foreground:    var(--cm-text-secondary);
+  --accent:              var(--cm-hover);
+  --accent-foreground:   var(--cm-text);
+  --destructive:         var(--cm-error);
+  --destructive-foreground: var(--text-1);
+  --border:              var(--cm-line);
+  --input:               var(--cm-line);
+  --ring:                var(--cm-blue);
+  --radius:              var(--cm-r-sm);
+}
+
+/* ===========================================================================
+   Accessibility overrides
+   ======================================================================== */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-blur:       none;
+    --glass-blur-heavy: none;
+    --glass-fill:       var(--raised);
+    --glass-popover:    var(--raised);
+    --cm-glass-thin:    none;
+    --cm-glass-regular: none;
+    --cm-glass-thick:   none;
+    --cm-glass-thin-fill:    var(--raised);
+    --cm-glass-regular-fill: var(--raised);
+    --cm-glass-thick-fill:   var(--raised);
+  }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+  :root {
+    --glass-fill:       var(--raised);
+    --glass-popover:    var(--raised);
+    --cm-glass-thin-fill:    var(--raised);
+    --cm-glass-regular-fill: var(--raised);
+    --cm-glass-thick-fill:   var(--raised);
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --line:        rgba(255, 255, 255, .24);
+    --line-strong: rgba(255, 255, 255, .38);
+    --text-2:      #A8A8AD;
+    --text-3:      #78787C;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
