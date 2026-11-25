@@ -1,23 +1,39 @@
-# AI-Powered Electronics Design & Learning Platform
-## 4-Week Development Journal
+# AI-Powered Electronics Design & Learning Platform (CircuitMentor)
+## 8-Week Development Journal
 
-**Team Members (in order):**
-1. Gautam Bhattacharya
-2. Bhaagwat Sharma
-3. Shreshtha Bhushan
-4. Gagan Tyagi
+**Team Members:**
+1. Shreshtha Bhushan — 1024030940
+2. Bhaagwat Sharma — 1024030815
+3. Gautam Bhattacharya — 1024030817
+4. Gagan Tyagi — 1024031100
+
+**Live deployment:** https://circuit-mentor-eight.vercel.app
+**Repository:** https://github.com/shreshtha-bhushan/CircuitMentor
 
 ---
 
 ## Project Overview
 
-The **AI-Powered Electronics Design & Learning Platform** is designed as an interactive electronics workspace combined with an AI mentor. The platform follows a student-first approach: the student physically and visually builds the circuit or PCB, while the AI provides contextual guidance, explanations, troubleshooting support, and answers to "what-if?" questions.
+**CircuitMentor** is a browser-based electronics workspace with a built-in AI mentor. The student builds the circuit themselves, visually, while the AI gives context-aware guidance: it explains concepts, points out mistakes, answers "what-if?" questions and suggests the next step.
 
 The central philosophy of the project is:
 
 > **AI guides. Student builds. Student learns.**
 
-The AI is not intended to automatically build or modify the student's circuit. Instead, it understands the project objective, the student's current workspace, the construction process, and relevant electronics knowledge so that it can guide the student through the design and learning process.
+The AI has no write access to the student's circuit. It reads a structured snapshot of the live workspace (components, values, pins, connections, rule-check findings and simulation results) together with the project objective, and uses that context to mentor the student.
+
+### Eight-week summary
+
+| Week | Focus | Result |
+|---|---|---|
+| 1 | Problem definition and product direction | Student-first scope agreed |
+| 2 | System architecture, AI context and RAG research | Context pipeline and knowledge-layer design |
+| 3 | Workspace, component model and mentor behaviour | Interaction loop and hint ladder defined |
+| 4 | Requirements, UML design and presentation | SRS, UML diagrams, mid-term presentation |
+| 5 | Interactive workspace and Electrical Rules Check | Working SVG canvas, parts library, 7 ERC rules |
+| 6 | Backend, authentication and persistence | FastAPI + PostgreSQL + Google sign-in |
+| 7 | AI mentor, DC simulator and knowledge base | Streaming context-aware mentor, DC simulation |
+| 8 | Learning tasks, testing, deployment and documentation | Deployed platform, ~74 automated tests, final report |
 
 ---
 
@@ -25,68 +41,55 @@ The AI is not intended to automatically build or modify the student's circuit. I
 
 ## Problem Faced
 
-The initial challenge was defining the exact scope of the project. Electronics design can include many areas such as circuit design, PCB layout, simulation, component selection, routing, and manufacturing. A broad scope would make the project difficult to implement and could shift the system away from its educational purpose.
+The first challenge was defining the scope. Electronics design covers circuit design, PCB layout, simulation, component selection, routing and manufacturing. A scope that broad would be impossible to deliver and would pull the project away from its educational purpose.
 
-Another important question was deciding what role AI should play. A system that automatically creates the entire circuit would reduce the student's involvement and would not strongly support learning.
+The team also had to decide what role the AI should play. A system that builds the whole circuit automatically would remove the student from the learning process.
 
 ## Relevant Context
 
-The team discussed the idea of combining an interactive electronics workspace with an AI mentor. The workspace was envisioned as a Tinkercad-like environment in which students can select components visually and construct circuits themselves.
-
-The platform is intended to support both breadboard-style circuit construction and PCB/canvas-based design. The component library is planned to include more than basic components, including sensors, microcontrollers, motors, servos, ICs, and modules.
+The team studied existing tools (Tinkercad Circuits, Fritzing, KiCad, Falstad) and general-purpose AI chatbots. Beginner-friendly tools offer no guidance. Professional EDA tools are too complex for beginners. Chatbots cannot see the student's circuit.
 
 ## Key Observation
 
-The most important observation during the first week was that **student involvement should remain central to the system**.
-
-The AI should not replace the student's design activity. Instead, it should help the student understand what they are doing, identify mistakes, explore alternatives, and complete the project independently.
+**Student involvement must remain central.** The AI should help the student understand what they are doing, find mistakes, explore alternatives and finish the project themselves. It should not replace the student's design work.
 
 ## Solution / Direction
 
-The team defined the project as an **AI-Powered Electronics Design & Learning Platform** rather than an autonomous PCB designer.
+The project was defined as an **AI-Powered Electronics Design & Learning Platform** rather than an autonomous PCB designer. The core features identified were:
 
-The initial core features were identified as:
-
-- Interactive electronics workspace
-- Visual component library
+- Interactive electronics workspace with a visual component library
 - Student-controlled circuit construction
-- Project objective definition and clarification
 - Context-aware AI mentor
 - Error detection and explanation
 - Progressive assistance from hints to direct solutions
-- "What-if?" questions and alternative component exploration
-- Electronics knowledge retrieval using RAG
-- Project/task-based guidance
+- "What-if?" questions and alternative components
+- Electronics knowledge retrieval (RAG) as the knowledge layer
+- Project and task-based guidance
 
 ## Individual Contributions
 
-### 1. Gautam Bhattacharya
-- Contributed to research related to the overall electronics platform and its technical direction.
-- Contributed to defining the overall system direction.
-- Worked on the initial system design and understanding of the platform workflow.
-- Helped structure the proposed backend and overall technical direction.
-- Contributed ideas for the presentation structure.
+### Shreshtha Bhushan
+- Led the competitor study of Tinkercad, Fritzing, KiCad and Falstad, and summarised the gaps for beginners.
+- Proposed the "mentor, not autopilot" role for the AI and drafted the problem statement.
+- Sketched the first workspace concept: library on the left, canvas in the centre, mentor dock on the right.
+- Set up the GitHub repository and the team's working conventions.
 
-### 2. Bhaagwat Sharma
-- Researched the educational and technical requirements of an AI-assisted electronics platform.
-- Contributed to defining the student-first design philosophy.
-- Worked on system design documentation and clarification of the project's scope.
-- Helped distinguish the proposed platform from a fully autonomous electronics design system.
+### Bhaagwat Sharma
+- Researched the educational requirements of an AI-assisted electronics platform.
+- Defined the student-first design philosophy and wrote the project objectives.
+- Drafted the scope statement separating the platform from a fully autonomous EDA system.
 
-### 3. Shreshtha Bhushan
-- Contributed to the frontend-oriented understanding of the interactive workspace.
-- Discussed how students could interact with components visually.
-- Contributed to backend and presentation planning.
-- Helped identify important user interactions within the proposed platform.
+### Gautam Bhattacharya
+- Researched the technical direction: rendering approaches for an interactive canvas, and how circuits can be represented as data.
+- Proposed the initial technology stack (React front end, Python FastAPI back end, PostgreSQL).
+- Structured the first-week presentation outline.
 
-### 4. Gagan Tyagi
-- Contributed to documentation planning.
-- Worked on the structure of the project report.
-- Helped organize project information for later documentation and presentation.
+### Gagan Tyagi
+- Took notes during team discussions.
 
 ## Outcome
 
-By the end of Week 1, the team had established a clear project direction: an interactive electronics learning environment where the student remains responsible for building the circuit and the AI acts as a mentor.
+The team settled on a clear direction: an interactive electronics learning environment where the student builds the circuit and the AI acts as a mentor.
 
 ---
 
@@ -94,89 +97,60 @@ By the end of Week 1, the team had established a clear project direction: an int
 
 ## Problem Faced
 
-After defining the product direction, the next challenge was determining how the AI could understand what the student was currently doing.
-
-A normal chatbot only receives the user's text. In this project, the AI needs additional information such as the current circuit state, project objective, construction stage, and visual representation of the workspace.
+A normal chatbot only receives the user's text. The mentor also needs to know the current circuit, the project objective and how far the student has got.
 
 ## Relevant Context
 
-The team considered three important inputs for the AI:
+Three inputs to the AI were considered:
 
-1. **User prompt** — what the student is currently asking or trying to understand.
-2. **Runtime circuit state** — structured information about components, values, pins, and connections.
-3. **Workspace screenshot** — visual information about the current arrangement of components.
-
-Additional project context can include the project objective, current task, previous steps, and relevant construction procedure.
+1. **Student prompt**: what the student is asking.
+2. **Runtime circuit state**: structured components, values, pins and connections.
+3. **Workspace screenshot**: visual arrangement of the parts.
 
 ## Key Observation
 
-The team identified that the **structured runtime state should act as the main source of circuit information**, while the screenshot provides visual grounding.
-
-For example, the runtime state can represent information such as:
-
-- Component ID
-- Component type
-- Component value
-- Pins
-- Connections
-- Power and ground connections
-
-The screenshot can help the AI understand the visual arrangement and context that may not be conveniently represented in structured data.
+**Structured runtime state should be the main source of circuit information.** A language model cannot reliably infer electrical connections from an image. The structured state was defined to include component ID, type, value, pins, connections, and power/ground nets.
 
 ## RAG Research
 
-The team also explored the role of Retrieval-Augmented Generation (RAG).
+The team researched Retrieval-Augmented Generation as a way to ground the mentor in reliable electronics knowledge instead of relying only on the model's general knowledge. Knowledge categories identified:
 
-RAG is intended to provide the AI with reliable technical knowledge instead of depending entirely on the language model's general knowledge.
+- Component datasheets, pinouts and specifications
+- Electronics concepts and troubleshooting information
+- Project procedures, component alternatives and trade-offs
 
-Potential knowledge categories include:
+A two-stage plan was agreed:
 
-- Component datasheets
-- Pinouts
-- Component specifications
-- Electronics concepts
-- Circuit construction knowledge
-- Troubleshooting information
-- Project procedures
-- Component alternatives
-- Trade-offs between components
-- Educational explanations
+1. A **curated component knowledge base** of short, verified notes per part (pinout, ratings, common mistakes).
+2. A **full RAG pipeline** with document chunking, embeddings and a vector store (pgvector) for datasheets and tutorials.
 
 ## Proposed AI Pipeline
 
-The proposed contextual AI flow became:
-
-**Student → Interactive Workspace → Runtime State + Screenshot + Prompt → Context Builder → Knowledge Retrieval / RAG → AI Reasoning → Mentor Response → Student Action**
-
-This separates circuit-state information from general electronics knowledge and allows the AI to produce more relevant guidance.
+**Student → Workspace → Runtime State + Prompt → Context Builder → Knowledge Retrieval → LLM Reasoning → Mentor Response → Student Action**
 
 ## Individual Contributions
 
-### 1. Gautam Bhattacharya
-- Contributed to research on the system architecture and technical approach.
-- Worked on system architecture and backend-oriented planning.
-- Contributed to defining the flow of information between the workspace and AI system.
-- Helped structure the runtime-state and AI interaction concepts.
+### Shreshtha Bhushan
+- Designed the end-to-end AI pipeline and the context builder concept.
+- Researched RAG approaches (chunking, embeddings, pgvector) and wrote the two-stage knowledge-layer plan.
+- Compared LLM providers and proposed OpenRouter as a single gateway to several models.
 
-### 2. Bhaagwat Sharma
-- Researched the AI context requirements.
-- Contributed to documentation of runtime state, screenshots, project context, and prompts.
-- Studied how RAG could support electronics-specific knowledge.
-- Helped document the proposed AI pipeline.
+### Bhaagwat Sharma
+- Defined the runtime circuit-state format (components, pins, nets, values).
+- Documented how the workspace would expose state to the AI.
+- Studied what visual context a screenshot adds over structured state.
 
-### 3. Shreshtha Bhushan
-- Contributed to how the frontend workspace could expose relevant circuit information.
-- Considered the interaction between the visual workspace and backend services.
-- Helped connect the workspace concept with the proposed AI workflow.
+### Gautam Bhattacharya
+- Designed the back-end architecture and the API boundaries between workspace, server and AI service.
+- Researched how to turn wires into electrical nets (union-find) for rule checking.
+- Drafted the system architecture diagram.
 
-### 4. Gagan Tyagi
-- Organized the architectural concepts for project documentation.
-- Contributed to recording the RAG and AI workflow for the report.
-- Helped maintain documentation consistency.
+### Gagan Tyagi
+- Formatted the week's architecture notes.
 
 ## Outcome
 
-By the end of Week 2, the team had a clearer architecture for a context-aware AI mentor. The AI was defined as a combination of structured circuit information, project context, retrieved electronics knowledge, and language-model reasoning.
+The team had an architecture for a context-aware mentor: structured circuit information, project context, retrieved electronics knowledge and LLM reasoning.
 
 ---
 
@@ -184,260 +158,270 @@ By the end of Week 2, the team had a clearer architecture for a context-aware AI
 
 ## Problem Faced
 
-The next challenge was translating the system concept into an understandable student interaction.
-
-It was necessary to define what happens when a student makes a mistake, asks a question, wants to change a component, or needs help with the next step.
-
-## Relevant Context
-
-The workspace is intended to provide a visual component library from which students can select components and build their circuits.
-
-The component scope was expanded beyond simple components such as resistors and LEDs. The proposed platform can include:
-
-- LEDs
-- Resistors
-- Sensors
-- Microcontrollers
-- Servo motors
-- DC motors
-- ICs
-- Modules
-- Other commonly used electronics components
-
-The student remains responsible for placing and connecting these components.
+The concept had to be turned into concrete student interactions: what happens when a student makes a mistake, asks a question, swaps a component or is stuck.
 
 ## Key Observation — Progressive Assistance
 
-The team identified that the AI should not immediately provide the complete solution for every mistake.
-
-A progressive assistance model was discussed:
+The AI should not hand over the full solution straight away. A four-level hint ladder was defined:
 
 **Nudge → Hint → Explanation → Direct Solution**
 
-For example, if an LED is connected with incorrect polarity, the AI could initially provide a small hint such as asking the student to reconsider the LED polarity. If the student still cannot solve the issue, the AI can provide a stronger explanation and eventually the direct correction.
-
-This approach keeps the student involved in the learning process.
+Example: for a reversed LED, the mentor first asks the student to check the LED's orientation. Only if the student is still stuck does it explain anode and cathode, and finally give the correction.
 
 ## "What-If?" Interaction
 
-Another important interaction identified during Week 3 was the ability to ask hypothetical questions.
+Students can ask hypothetical questions such as "What if I use a 330 Ω resistor?" or "What happens if I connect the LED directly to 9 V?" The mentor should reason from the actual values in the circuit and show the calculation, not just answer yes or no.
 
-Examples include:
+## Project and Task Context
 
-- "What if I use a 330Ω resistor?"
-- "Can I use another sensor?"
-- "What happens if I connect the LED directly to 5V?"
-- "Can I replace this component with another one?"
-
-The AI should explain the consequences, limitations, alternatives, and trade-offs instead of simply giving a yes/no answer.
-
-## Project and SOP Context
-
-The team also identified the importance of knowing the project's intended construction process.
-
-For example, an automatic dustbin project could be divided into tasks such as:
-
-1. Understand the objective
-2. Identify required components
-3. Place the ultrasonic sensor
-4. Establish power and ground
-5. Connect the sensor
-6. Place the servo motor
-7. Connect the servo
-8. Verify the circuit
-9. Test the project
-
-The AI can use this task context to guide the student toward the next appropriate step.
-
-## Example Project
-
-An automatic dustbin was used as a conceptual example involving:
-
-- Ultrasonic sensor
-- Microcontroller
-- Servo motor
-
-The AI would help the student understand the architecture and guide the construction process, but the student would make the actual component placement and connections.
+Guided tasks were designed as step lists (objective → components → power and ground → connections → verify → test) so the mentor can point the student to the next step. The automatic-dustbin project (ultrasonic sensor + microcontroller + servo) was used as the reference example.
 
 ## Individual Contributions
 
-### 1. Gautam Bhattacharya
-- Contributed to research and technical exploration related to the interactive workspace.
-- Contributed to the system design for the interactive workspace.
-- Helped define the component and project workflow.
-- Contributed to backend-oriented planning for representing project state.
-- Worked on presentation material related to system functionality.
+### Shreshtha Bhushan
+- Designed the four-level hint ladder and the mentor's response rules.
+- Wrote the "what-if?" interaction specification.
+- Designed the mentor dock UI and its context chips.
 
-### 2. Bhaagwat Sharma
-- Worked on documenting the AI mentor behaviour.
-- Contributed to the progressive assistance concept.
-- Documented "what-if?" interactions and project task guidance.
-- Helped explain the educational reasoning behind keeping the student in control.
+### Bhaagwat Sharma
+- Designed the canvas interactions: place, drag, rotate, delete and pin-to-pin wiring.
+- Defined the component model and the first part list (resistor, LED, battery, switch, ground).
+- Wrote the guided-task format with the dustbin example.
 
-### 3. Shreshtha Bhushan
-- Contributed to the frontend interaction model.
-- Worked on how students could visually select and work with components.
-- Contributed to the interaction between frontend workspace functionality and backend logic.
-- Helped prepare related presentation material.
+### Gautam Bhattacharya
+- Defined the first Electrical Rules Check (ERC) rules: missing current-limiting resistor, reversed LED, missing ground and supply short.
+- Designed how ERC findings attach to components on the canvas.
+- Prepared the system-functionality slides.
 
-### 4. Gagan Tyagi
-- Worked on organizing the project documentation.
-- Contributed to documenting examples and workflows.
-- Helped structure the report sections describing the user journey and mentor behaviour.
+### Gagan Tyagi
+- Collected example circuits for the team to discuss.
 
 ## Outcome
 
-By the end of Week 3, the team had defined the central interaction loop:
+The central interaction loop was defined:
 
-**Student builds → Workspace state updates → AI checks context → AI guides → Student changes the circuit → AI re-evaluates → Student continues**
-
-The AI was therefore positioned as an active mentor rather than a simple question-answering chatbot.
+**Student builds → state updates → rules check → AI guides → student corrects → AI re-evaluates**
 
 ---
 
-# Week 4 — Integration Planning, Requirements, Documentation and Presentation Preparation
+# Week 4 — Requirements, UML Design and Presentation
 
 ## Problem Faced
 
-The final week focused on bringing the previously defined concepts into one coherent system description.
+The concepts had to become a formal specification with requirements and UML models, and a clear line between MVP and future work, ready for the mid-term evaluation.
 
-The project includes several interconnected parts:
+## Work Done
 
-- Frontend workspace
-- Component library
-- Backend
-- Runtime circuit state
-- AI mentor
-- RAG knowledge layer
-- Project/task context
-- Documentation
-- Testing
-
-The team needed to define how these parts fit together and distinguish the MVP from future extensions.
-
-## Relevant Context
-
-The proposed MVP focuses on:
-
-- Interactive circuit/PCB workspace
-- Student-controlled construction
-- Context-aware AI mentor
-- Project objective clarification
-- Circuit-state awareness
-- Error guidance
-- "What-if?" reasoning
-- Electronics knowledge retrieval
-- Progressive learning assistance
-
-Full professional EDA capabilities are outside the immediate MVP scope.
-
-## Key Observation
-
-A major conclusion from the project planning was that the platform should focus on **learning through construction**, rather than trying to automate professional electronics engineering.
-
-The AI should help students understand:
-
-- Why a component is needed
-- Why a connection is correct or incorrect
-- What happens when a component is changed
-- What alternatives are available
-- What the next construction step should be
-- How to troubleshoot a problem
-
-## Requirements Planning
-
-### Functional Requirements
-
-The proposed system should be able to:
-
-1. Create and manage electronics projects.
-2. Provide a visual component library.
-3. Allow students to place and connect components.
-4. Maintain structured circuit state.
-5. Accept student questions and prompts.
-6. Provide project-aware AI guidance.
-7. Retrieve relevant electronics knowledge.
-8. Explain mistakes and possible corrections.
-9. Answer "what-if?" questions.
-10. Guide students through project tasks.
-
-### Non-Functional Requirements
-
-The team also considered:
-
-- Usability
-- Responsiveness
-- Reliability
-- Maintainability
-- Security
-- Scalability
-- Clear AI responses
-- Consistent circuit-state representation
-
-## Testing Plan
-
-The testing approach was planned around multiple levels:
-
-### Unit Testing
-Testing individual modules such as component handling, state representation, and backend logic.
-
-### Integration Testing
-Testing communication between the frontend, backend, AI services, and knowledge retrieval components.
-
-### System Testing
-Testing complete project workflows from project creation to guided construction and verification.
-
-### User Testing
-Testing whether students can understand the AI's guidance and complete construction without the AI taking over the design.
-
-## Future Scope
-
-Potential future extensions include:
-
-- Electrical circuit simulation
-- Circuit visualization
-- Oscilloscope and waveform views
-- More advanced PCB routing
-- Manufacturing-oriented outputs
-- Hardware integration
-- Larger component libraries
-- More advanced engineering recommendations
-
-These are considered future directions rather than core MVP capabilities.
+- **Functional requirements**: project management, component library, place and connect components, structured circuit state, contextual AI guidance, error detection, "what-if?" responses, guided tasks, knowledge retrieval.
+- **Non-functional requirements**: usability, performance, reliability, security, scalability, maintainability.
+- **UML and structured analysis**: Use Case diagram with templates, Activity and Swimlane diagrams, DFD Levels 0–2, Class, Sequence, Collaboration, State Chart, Component and Deployment diagrams.
+- **Testing plan**: unit, integration, system and user testing.
+- **MVP boundary**: breadboard/schematic workspace, ERC, DC simulation and AI mentor in scope; PCB routing, transient simulation and manufacturing outputs as future scope.
 
 ## Individual Contributions
 
-### 1. Gautam Bhattacharya
-- Consolidated research findings and the overall system design.
-- Contributed to backend and integration planning.
-- Helped organize the final system architecture.
-- Contributed to presentation preparation.
+### Shreshtha Bhushan
+- Wrote the AI-related functional requirements and the mentor sequence diagram.
+- Built the mid-term presentation (architecture, AI and RAG pipeline, technology stack slides).
+- Drew the Component and Deployment diagrams.
 
-### 2. Bhaagwat Sharma
-- Consolidated system design documentation.
-- Worked on project requirements and AI workflow documentation.
-- Organized the technical explanation of RAG, runtime state, and contextual AI behaviour.
-- Contributed to final presentation and documentation preparation.
+### Bhaagwat Sharma
+- Wrote the use-case templates and user stories.
+- Drew the Use Case, Activity, Swimlane and State Chart diagrams.
+- Drafted the requirements specification.
 
-### 3. Shreshtha Bhushan
-- Contributed to frontend and backend integration planning.
-- Helped organize the workspace and user interaction flow.
-- Contributed to presentation preparation.
-- Helped ensure that the proposed interface matched the student-first project direction.
+### Gautam Bhattacharya
+- Drew DFD Levels 0–2 and the Class and Collaboration diagrams.
+- Wrote the testing plan.
+- Defined the MVP boundary and future scope.
 
-### 4. Gagan Tyagi
-- Consolidated report and documentation material.
-- Organized project sections and supporting explanations.
-- Contributed to testing-plan documentation.
-- Helped prepare the final project documentation.
+### Gagan Tyagi
+- Proofread the requirements section.
 
 ## Outcome
 
-By the end of Week 4, the team had a consolidated understanding of the proposed system, its AI workflow, its student interaction model, its requirements, and its future scope.
+The team presented a complete, consistent design at the mid-term evaluation.
 
-The project direction was established around a simple principle:
+---
 
-> **The goal is not to replace the student in the design process, but to make the student better at it.**
+# Week 5 — Interactive Workspace and Electrical Rules Check (Implementation)
+
+## Problem Faced
+
+Implementation started with a vertical slice: an LED, a resistor and a battery placed and wired by the student, with a broken circuit detected immediately.
+
+## Work Done
+
+- **Front end set up** with React 19, TypeScript (strict), Vite, Tailwind CSS and Radix UI primitives, using a shared design-token file (`tokens.css`).
+- **SVG canvas**: pan and zoom, placing, dragging, rotating and deleting components, and pin-to-pin wiring with orthogonal wire routing (`wireRouter.ts`).
+- **Component library** with search: resistor, LED, 9 V and 3 V batteries, ground, push-button, SPST switch, potentiometer, capacitor, diode, NPN transistor, Arduino Uno, breadboard, DC motor, servo and ultrasonic sensor.
+- **Net builder**: wires are converted into electrical nets using a union-find algorithm (`erc/nets.ts`).
+- **Electrical Rules Check**: seven deterministic rules running client-side on every change:
+  `LED_NO_RESISTOR`, `LED_REVERSED`, `NO_GROUND_PATH`, `OPEN_LOOP_LOAD`, `SHORTED_COMPONENT`, `UNCONNECTED_PIN`, `VCC_GND_SHORT`.
+- **ERC findings panel** that highlights the offending component on hover. Inspector panel for editing component values.
+
+## Individual Contributions
+
+### Shreshtha Bhushan
+- Set up the front-end project, design tokens and UI component primitives.
+- Built the Library panel, Inspector and Command Palette, and keyboard shortcuts.
+- Integrated the ERC findings panel with canvas highlighting.
+
+### Bhaagwat Sharma
+- Implemented the SVG canvas: viewport, hit-testing, place, drag, rotate and delete.
+- Implemented pin-to-pin wiring and the orthogonal wire router.
+- Built the floating toolbar and the live circuit preview.
+
+### Gautam Bhattacharya
+- Implemented union-find net derivation (`nets.ts`).
+- Implemented all seven ERC rules (`rules.ts`) and wrote 21 unit tests for them.
+- Defined the part metadata (pins, polarity, ratings) used by the rules.
+
+### Gagan Tyagi
+- Tested the canvas manually and reported two UI glitches.
+
+## Outcome
+
+A student can now build a circuit and see rule violations immediately, with no server or AI involved.
+
+---
+
+# Week 6 — Back End, Authentication and Persistence
+
+## Problem Faced
+
+Projects needed to be saved per user, so the platform needed sign-in, a database and a REST API.
+
+## Work Done
+
+- **FastAPI back end** with async SQLAlchemy 2.0 and Pydantic v2 validation.
+- **Google sign-in** using the OAuth 2.0 authorization-code flow with PKCE; session JWT stored in an `httpOnly` cookie.
+- **PostgreSQL schema** with four Alembic migrations:
+  1. `0001` users, projects and circuit data (JSONB)
+  2. `0002` project task ID and progress
+  3. `0003` composite indexes and constraints
+  4. `0004` chat messages and circuit snapshots
+- **REST routers**: `/v1/auth`, `/v1/projects` (CRUD), `/v1/parts`, `/v1/messages` (chat history and circuit snapshots), plus `/ready` health check.
+- **Dashboard** listing the user's projects, and a **login page** wired to Google sign-in.
+- Docker Compose for a local PostgreSQL instance.
+
+## Individual Contributions
+
+### Shreshtha Bhushan
+- Implemented Google OAuth with PKCE, JWT sessions and secure cookies.
+- Built the Dashboard and Login pages and the typed API client (`lib/api.ts`).
+- Wrote the auth and project API tests.
+
+### Bhaagwat Sharma
+- Implemented project save and load from the canvas, and the circuit snapshot history.
+- Built the landing page and settings modal.
+
+### Gautam Bhattacharya
+- Designed the PostgreSQL schema and wrote the four Alembic migrations.
+- Implemented the projects, parts and messages routers.
+- Set up Docker Compose and the API Dockerfile.
+
+### Gagan Tyagi
+- Helped check the database setup instructions in the README.
+
+## Outcome
+
+Users sign in with Google, and their projects, circuits, chat history and snapshots are stored in PostgreSQL.
+
+---
+
+# Week 7 — AI Mentor, DC Simulator and Knowledge Base
+
+## Problem Faced
+
+The mentor had to use the student's actual circuit, stream its answers, follow the hint ladder and never claim to have changed the circuit. Students also needed to see whether their circuit actually works.
+
+## Work Done
+
+- **Circuit context builder** (`buildCircuitContext.ts`): serialises components, values, pins, nets, selection, ERC findings and simulation results into a validated `<circuit_state>` block.
+- **Mentor service** (`/v1/mentor/stream`): streams responses over Server-Sent Events through OpenRouter (Claude 3.5 Haiku by default) with direct Anthropic as an alternative.
+  - Pydantic schemas validate every field of the incoming context.
+  - Prompt-injection guard strips `<circuit_state>` tags and control characters from user text.
+  - `derive_circuit_facts()` parses ohms, volts and farads and adds facts such as expected LED current, so the model reasons from real numbers.
+  - Hint level 1–4 sent with every request to enforce the hint ladder.
+  - "What-if?" answers must reason from the actual netlist values and show the calculation.
+  - The mentor never states or implies that it changed the circuit.
+- **Mentor dock** with streaming text, context chips and an on-canvas hint layer.
+- **DC simulator** (`dcSim.ts`): computes loop currents, voltage drops, power dissipation and LED states (off, lit, overcurrent, reversed), and detects short circuits. Results feed both the UI and the mentor's context.
+- **Component knowledge base — first stage of the knowledge layer**: `apps/api/knowledge/parts.json` holds verified notes for 16 parts (pinout, ratings and common mistakes), loaded by the mentor service at start-up.
+- **Full RAG pipeline (designed, in progress)**: datasheet and tutorial ingestion, chunking, embeddings and pgvector retrieval are designed, but not yet integrated into the mentor's responses.
+
+## Individual Contributions
+
+### Shreshtha Bhushan
+- Built the mentor service: SSE streaming, OpenRouter/Anthropic clients, system prompt, hint-ladder enforcement and prompt-injection guard.
+- Implemented `derive_circuit_facts()` and the circuit-state serialiser.
+- Wrote the component knowledge base and the mentor API tests.
+
+### Bhaagwat Sharma
+- Implemented the client-side context builder and its tests.
+- Built the Mentor Dock, context chips and the hint layer on the canvas.
+- Implemented the `useMentor` streaming hook.
+
+### Gautam Bhattacharya
+- Implemented the DC simulator and its 11 unit tests.
+- Connected simulation results to component telemetry in the Inspector and to the mentor's context.
+- Benchmarked the simulator and ERC on larger circuits.
+
+### Gagan Tyagi
+- Tried sample questions with the mentor and noted the responses.
+
+## Outcome
+
+The mentor answers questions about the student's actual circuit, gives graded hints, works through "what-if?" questions with real values, and streams its answers live.
+
+---
+
+# Week 8 — Learning Tasks, Testing, Deployment and Documentation
+
+## Work Done
+
+### Guided learning
+- Five guided tasks with step checks: *Light an LED Safely*, *Add a Control Switch*, *Series vs Parallel Loads*, *Debug: Direct Rail Short Circuit* and *Debug: Reversed LED Polarity*.
+- Progress and statistics tracking per student (`learning/stats.ts`), plus concept explanations (`learning/concepts.ts`).
+
+### Testing
+- **Front end (Vitest)**: about 53 tests covering ERC (21), DC simulation (11), learning statistics (12), tasks (5) and the context builder (4).
+- **Back end (pytest)**: about 21 tests covering authentication, projects, messages, the mentor endpoint and system/health.
+- **CI**: a GitHub Actions workflow runs type-checking and tests on every push.
+- Manual system testing of the complete flow: sign in → create project → build → ERC → simulate → ask mentor → fix → save.
+
+### Deployment
+- Front end deployed on **Vercel**; API deployed on **Render** as a Docker service with a `/ready` health check.
+- A keep-alive GitHub workflow pings the API every 5 minutes and warms the database connection to avoid cold starts.
+
+### Documentation
+- Final project report with requirements, use-case templates, user stories, all UML diagrams (redrawn to course conventions and checked for DFD balancing), test cases and screenshots.
+- `README.md`, `ARCHITECTURE.md`, `SYSTEM_DESIGN.md`, `RUNBOOK.md` and final presentation.
+
+## Individual Contributions
+
+### Shreshtha Bhushan
+- Set up the Vercel and Render deployments, environment configuration and keep-alive workflow.
+- Set up the GitHub Actions CI pipeline.
+- Wrote the README and runbook, and led the final report and presentation.
+
+### Bhaagwat Sharma
+- Implemented the guided-task engine, step checks and the five tasks.
+- Implemented progress statistics with tests.
+- Redrew the Use Case, Activity, Swimlane and State Chart diagrams for the final report.
+
+### Gautam Bhattacharya
+- Wrote the back-end integration tests and ran the end-to-end system tests.
+- Redrew DFD Levels 0–2 (with balancing checks) and the Class, Collaboration, Component and Deployment diagrams.
+- Wrote the test-case section of the report.
+
+### Gagan Tyagi
+- Proofread the final report.
+
+## Outcome
+
+CircuitMentor is deployed and usable end to end. A student can sign in, build a circuit, see rule violations and simulation results, get graded, context-aware help from the AI mentor, complete guided tasks and save their work.
 
 ---
 
@@ -445,153 +429,41 @@ The project direction was established around a simple principle:
 
 | Member | Primary Responsibility |
 |---|---|
-| **Gautam Bhattacharya** | System design, research, backend, PPT |
-| **Bhaagwat Sharma** | Research, system design documentation |
-| **Shreshtha Bhushan** | Frontend, backend, PPT |
-| **Gagan Tyagi** | Report, documentation |
+| **Shreshtha Bhushan** | AI mentor, authentication, front-end platform, deployment, CI, report and presentation lead |
+| **Bhaagwat Sharma** | Canvas and wiring, context builder, mentor dock, guided tasks, requirements and UML |
+| **Gautam Bhattacharya** | ERC engine, DC simulator, database and API, testing, DFDs and UML |
+| **Gagan Tyagi** | Proofreading and note-taking |
 
 ---
 
-# Core Technical Concepts
+# Implementation Status
 
-## 1. Interactive Electronics Workspace
-
-The workspace provides the visual environment where the student selects components and constructs the circuit.
-
-The student, rather than the AI, performs the actual design actions.
-
-## 2. Runtime Circuit State
-
-The runtime state provides a structured representation of the current circuit.
-
-It can contain information such as:
-
-- Components
-- Component types
-- Values
-- Pins
-- Connections
-- Power connections
-- Ground connections
-
-This structured representation is important because an AI model should not be expected to infer every electrical connection from a screenshot alone.
-
-## 3. Screenshot Context
-
-A screenshot provides visual information about the current workspace.
-
-It can help the AI understand:
-
-- Component arrangement
-- Visual layout
-- Workspace context
-- Information that may not be obvious from structured state alone
-
-## 4. RAG
-
-Retrieval-Augmented Generation provides relevant electronics knowledge to the AI.
-
-The knowledge layer can eventually contain datasheets, pinouts, component specifications, electronics concepts, troubleshooting information, and project procedures.
-
-## 5. AI Mentor
-
-The AI mentor combines:
-
-- Student prompt
-- Current circuit state
-- Workspace screenshot
-- Project objective
-- Current task
-- Retrieved electronics knowledge
-
-It then generates contextual guidance.
-
-## 6. Progressive Assistance
-
-The AI can adapt the amount of help provided:
-
-**Nudge → Hint → Explanation → Direct Solution**
-
-This is intended to support learning rather than encourage students to copy solutions immediately.
+| Feature | Status |
+|---|---|
+| Interactive SVG workspace and 16-part library | Implemented |
+| Electrical Rules Check (7 rules) | Implemented |
+| DC circuit simulator | Implemented |
+| Google sign-in, projects, chat history, snapshots | Implemented |
+| Context-aware streaming AI mentor with hint ladder and "what-if?" reasoning | Implemented |
+| Guided learning tasks and progress tracking | Implemented |
+| Component knowledge base (`parts.json`) | Implemented (first stage of knowledge layer) |
+| Full RAG pipeline (embeddings, vector store, datasheet retrieval) | Designed, in progress |
+| PCB routing, transient simulation, manufacturing outputs | Future scope |
 
 ---
 
-# Overall Project Workflow
+# Future Scope
 
-```text
-Student creates/opens project
-            ↓
-Student defines project objective
-            ↓
-AI asks clarification questions if required
-            ↓
-Student selects components
-            ↓
-Student builds circuit/PCB
-            ↓
-Workspace updates runtime state
-            ↓
-Student asks AI or AI is triggered by a meaningful issue
-            ↓
-System gathers:
-  - Prompt
-  - Runtime state
-  - Screenshot
-  - Project context
-            ↓
-Relevant knowledge is retrieved
-            ↓
-AI reasons about the context
-            ↓
-AI provides guidance
-            ↓
-Student makes the required changes
-            ↓
-System checks the updated state
-            ↓
-Student continues
-```
-
----
-
-# Final Project Philosophy
-
-The platform is designed around the following principle:
-
-> **Don't build the circuit for the student. Build the student's ability to build the circuit.**
-
-The AI acts as a mentor, teacher, examiner, and thought partner. The student remains the primary actor throughout the design process.
-
-The intended final experience is one where a student can receive an unfamiliar electronics project, construct it themselves in an interactive environment, receive contextual guidance when needed, understand why their decisions are correct or incorrect, experiment with alternatives, and complete the project while gaining practical electronics knowledge.
-
----
-
-# Current Project Direction
-
-The project has been structured into the following major stages:
-
-1. Problem definition
-2. Product scope definition
-3. Interactive workspace design
-4. AI mentor design
-5. Runtime state representation
-6. RAG and knowledge-layer planning
-7. Project/task context
-8. Requirements definition
-9. Architecture documentation
-10. Testing planning
-11. Presentation and report preparation
-
-The distinction between **planned**, **designed**, and **implemented** work should be maintained in the final academic documentation. Features that have only been researched or designed should not be presented as completed implementations.
+- Complete the RAG pipeline: ingest datasheets and tutorials, store embeddings in pgvector, and retrieve relevant passages into the mentor's context.
+- Transient and AC simulation, oscilloscope and waveform views.
+- PCB layout and routing, and manufacturing outputs.
+- Microcontroller code co-simulation.
+- A larger component library and more guided tasks.
 
 ---
 
 # Conclusion
 
-Over the four weeks, the project evolved from a broad idea of using AI in electronics into a more focused **AI-Powered Electronics Design & Learning Platform**.
+Over eight weeks, CircuitMentor went from a broad idea about AI in electronics to a deployed learning platform. Students build circuits themselves. Deterministic rule checking and simulation tell them exactly what is wrong, and an AI mentor that reads their actual circuit helps them understand why and what to try next.
 
-The key design decision was to keep the student in control of circuit construction while using AI to provide contextual assistance. The system combines an interactive electronics workspace with structured circuit information, project context, electronics knowledge retrieval, and an AI mentor.
-
-The resulting concept is intended to bridge the gap between theoretical electronics knowledge and practical circuit construction.
-
-**AI guides. Student builds. Student learns.**
+> **Don't build the circuit for the student. Build the student's ability to build the circuit.**
